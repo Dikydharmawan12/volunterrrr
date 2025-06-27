@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Divisi;
+use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminDivisiController extends Controller
 {
@@ -57,6 +59,17 @@ class AdminDivisiController extends Controller
 
         return redirect()->route('admin.divisi.index')
             ->with('success', 'Divisi berhasil dihapus!');
+    }
+
+    public function peserta()
+    {
+        $pendaftarans = Pendaftaran::with('divisi')->latest()->get();
+        return view('admin.divisi.peserta', compact('pendaftarans'));
+    }
+
+    public function exportPeserta()
+    {
+        // Implementasi ekspor excel akan dibuat setelah view dan route siap
     }
 }
 

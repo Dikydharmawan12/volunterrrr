@@ -39,6 +39,9 @@ Route::middleware(['admin.verified'])->prefix('admin')->group(function () {
     // Route untuk pengaturan acara
     Route::get('/pengaturan', [AdminPengaturanController::class, 'index'])->name('admin.pengaturan.index');
     Route::put('/pengaturan', [AdminPengaturanController::class, 'update'])->name('admin.pengaturan.update');
+
+    Route::get('/peserta', [AdminDivisiController::class, 'peserta'])->name('admin.divisi.peserta');
+    Route::get('/peserta/export', [AdminDivisiController::class, 'exportPeserta'])->name('admin.divisi.exportPeserta');
 });
 
 // Route untuk logout admin

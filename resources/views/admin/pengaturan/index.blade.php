@@ -134,7 +134,7 @@
                                        name="status_pendaftaran" value="1" 
                                        {{ old('status_pendaftaran', $pengaturan->status_pendaftaran ?? true) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="status_pendaftaran">
-                                    <i class="fas fa-toggle-on me-1"></i>Buka Pendaftaran
+                                    Buka Pendaftaran
                                 </label>
                             </div>
                             <small class="form-text text-muted">

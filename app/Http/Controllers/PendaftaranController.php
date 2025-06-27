@@ -14,8 +14,8 @@ class PendaftaranController extends Controller
     {
         $pengaturan = PengaturanAcara::first();
         $divisis = Divisi::all();
-        
-        return view('pendaftaran.index', compact('divisis', 'pengaturan'));
+        $pendaftarans = Pendaftaran::with('divisi')->latest()->get();
+        return view('pendaftaran.index', compact('divisis', 'pengaturan', 'pendaftarans'));
     }
 
     public function store(Request $request)

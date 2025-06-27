@@ -6,51 +6,69 @@
     <title>@yield('title', 'Pendaftaran Volunter Pengajian Akbar Poliwangi 2025')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --light-bg: #ecf0f1;
+            --primary-color: #16a34a;
+            --secondary-color: #22c55e;
+            --accent-color: #bbf7d0;
+            --success-color: #16a34a;
+            --warning-color: #facc15;
+            --light-bg: #f0fdf4;
+            --text-main: #14532d;
+            --text-dark: #222;
+            --text-light: #fff;
         }
         
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #111827;
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #f0fdf4;
         }
         
         .navbar {
-            background: rgba(44, 62, 80, 0.95) !important;
+            background: #16a34a !important;
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(22,163,74,0.08);
+            color: var(--text-light);
         }
         
         .navbar-brand {
             font-weight: 700;
             font-size: 1.4rem;
+            color: var(--text-light) !important;
+        }
+        
+        .navbar .navbar-brand, .navbar .nav-link, .navbar .btn {
+            color: var(--text-light) !important;
         }
         
         .card {
             border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(22,163,74,0.08);
             backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.95);
+            background: #18181b;
+            color: #f0fdf4;
         }
         
         .card-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 15px 15px 0 0 !important;
+            background: #16a34a;
+            color: #fff;
+            border-radius: 18px 18px 0 0 !important;
             border: none;
             padding: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
         
-        .btn-primary {
-            background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+        .btn, .btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-info, .btn-secondary {
+            color: #fff !important;
+        }
+        
+        .btn-primary, .btn-success {
+            background: #16a34a;
             border: none;
             border-radius: 25px;
             padding: 12px 30px;
@@ -58,57 +76,122 @@
             transition: all 0.3s ease;
         }
         
-        .btn-primary:hover {
+        .btn-primary:hover, .btn-success:hover {
+            background: #15803d;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 5px 15px rgba(22,163,74,0.18);
         }
         
-        .btn-secondary {
-            background: linear-gradient(135deg, var(--primary-color), #34495e);
-            border: none;
-            border-radius: 25px;
-            padding: 12px 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .btn-info {
+            background: #bbf7d0;
+            color: #14532d !important;
         }
         
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.4);
+        .btn-info:hover {
+            background: #16a34a;
+            color: #fff !important;
+        }
+        
+        .btn-light, .btn-outline-light {
+            color: #14532d !important;
+            background: #fff !important;
+            border: 1px solid #bbf7d0 !important;
         }
         
         .form-control, .form-select {
             border-radius: 10px;
-            border: 2px solid #e9ecef;
+            border: 2px solid #bbf7d0;
             padding: 12px 15px;
             transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            color: #f0fdf4;
+            background: #23272f;
         }
         
         .form-control:focus, .form-select:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(22,163,74,0.15);
+            color: #f0fdf4;
+            background: #23272f;
+        }
+        
+        .form-label, label {
+            color: #bbf7d0;
+            font-weight: 500;
+        }
+        
+        ::placeholder {
+            color: #a3a3a3;
+            opacity: 1;
+        }
+        
+        .form-text, .text-muted {
+            color: #bbf7d0 !important;
         }
         
         .alert {
             border-radius: 10px;
             border: none;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+        
+        .alert-success, .alert-info {
+            background: #bbf7d0;
+            color: #065f46;
+        }
+        
+        .alert-danger, .alert-warning {
+            background: #fef9c3;
+            color: #b91c1c;
         }
         
         .table {
             border-radius: 10px;
             overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            color: #f0fdf4;
+            background: #18181b;
+            border: 1px solid #22c55e;
         }
         
         .table thead th {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: #16a34a;
+            color: #fff;
             border: none;
             font-weight: 600;
         }
         
+        .table tbody td {
+            color: #fff !important;
+            font-weight: 500;
+        }
+        
+        .table-striped > tbody > tr:nth-of-type(odd) {
+            background-color: #23272f;
+        }
+        
+        .table-striped > tbody > tr:nth-of-type(even) {
+            background-color: #18181b;
+        }
+        
+        .table-bordered > :not(caption) > * > * {
+            border-color: #22c55e;
+        }
+        
+        .badge.bg-info, .badge.bg-success {
+            background: #bbf7d0;
+            color: #065f46 !important;
+            font-weight: 600;
+        }
+        
+        .badge.bg-primary, .badge.bg-warning, .badge.bg-danger {
+            color: #fff !important;
+        }
+        
         .hero-section {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.9));
-            color: white;
+            background: #16a34a;
+            color: #fff;
             padding: 4rem 0;
             margin-bottom: 2rem;
             border-radius: 0 0 30px 30px;
@@ -117,20 +200,34 @@
         .feature-card {
             transition: all 0.3s ease;
             cursor: pointer;
+            color: #f0fdf4;
         }
         
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(22,163,74,0.12);
         }
         
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #16a34a;
         }
+        
+        a, .nav-link {
+            color: #bbf7d0;
+        }
+        
+        a:hover, .nav-link:hover {
+            color: #22c55e;
+        }
+        
+        .text-dark { color: #f0fdf4 !important; }
+        .text-main { color: #bbf7d0 !important; }
+        .text-white { color: #fff !important; }
+        .text-success { color: #16a34a !important; }
+        .text-danger { color: #b91c1c !important; }
+        .text-warning { color: #facc15 !important; }
         
         @media (max-width: 768px) {
             .hero-section {
@@ -144,6 +241,38 @@
             .card-header {
                 padding: 1rem;
             }
+        }
+        
+        /* Button Logout khusus di navbar */
+        .navbar .btn-logout, .navbar .btn-outline-light {
+            background: #bbf7d0 !important;
+            color: #065f46 !important;
+            border: none !important;
+            font-weight: 600;
+            border-radius: 20px;
+            padding: 6px 18px;
+            transition: all 0.2s;
+        }
+        .navbar .btn-logout:hover, .navbar .btn-outline-light:hover {
+            background: #16a34a !important;
+            color: #fff !important;
+        }
+        
+        /* Badge di dalam tabel */
+        .table .badge, .table .bg-info, .table .bg-primary, .table .bg-success {
+            background: #16a34a !important;
+            color: #fff !important;
+            font-weight: 600;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+        
+        /* Tombol aksi di tabel */
+        .table .btn {
+            margin-right: 0.3rem;
+        }
+        .table .btn:last-child {
+            margin-right: 0;
         }
     </style>
 </head>
@@ -173,14 +302,11 @@
                 @if(session('admin_verified'))
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <span class="navbar-text me-3">
-                                <i class="fas fa-user-shield me-1"></i>Admin Mode
-                            </span>
                         </li>
                         <li class="nav-item">
                             <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-light btn-sm">
+                                <button type="submit" class="btn btn-logout btn-sm">
                                     <i class="fas fa-sign-out-alt me-1"></i>Logout
                                 </button>
                             </form>

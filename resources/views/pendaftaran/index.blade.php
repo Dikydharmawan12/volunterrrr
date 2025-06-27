@@ -57,6 +57,12 @@
                     <p class="mb-0">Pendaftaran volunter sedang ditutup sementara. Silakan cek kembali nanti.</p>
                 </div>
             @else
+                <!-- Button Lihat Divisi -->
+                <div class="mb-3 text-end">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDivisi">
+                        <i class="fas fa-eye me-1"></i> Lihat Divisi Tersedia
+                    </button>
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <h4 class="mb-0">
@@ -159,8 +165,11 @@
                                             id="divisi_id" name="divisi_id" required>
                                         <option value="">-- Pilih Divisi Volunter --</option>
                                         @foreach($divisis as $divisi)
+                                            @php
+                                                $sisa_kuota = $divisi->kuota - $divisi->pendaftarans()->count();
+                                            @endphp
                                             <option value="{{ $divisi->id }}" {{ old('divisi_id') == $divisi->id ? 'selected' : '' }}>
-                                                {{ $divisi->nama }} (Kuota: {{ $divisi->kuota }})
+                                                {{ $divisi->nama }} (Sisa Kuota: {{ $sisa_kuota }})
                                             </option>
                                         @endforeach
                                     </select>
@@ -207,7 +216,91 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Daftar Volunter yang Sudah Mendaftar -->
+            <div class="card mt-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-users me-2"></i>Daftar Volunter yang Sudah Mendaftar</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>NIM</th>
+                                    <th>Prodi</th>
+                                    <th>No HP</th>
+                                    <th>Divisi</th>
+                                    <th>Waktu Daftar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($pendaftarans as $pendaftaran)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pendaftaran->nama }}</td>
+                                        <td>{{ $pendaftaran->nim }}</td>
+                                        <td>{{ $pendaftaran->prodi }}</td>
+                                        <td>{{ $pendaftaran->no_hp }}</td>
+                                        <td>{{ $pendaftaran->divisi->nama ?? '-' }}</td>
+                                        <td>{{ $pendaftaran->created_at->format('d/m/Y H:i') }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">Belum ada volunter yang mendaftar.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+<!-- Modal Daftar Divisi -->
+<div class="modal fade" id="modalDivisi" tabindex="-1" aria-labelledby="modalDivisiLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="modalDivisiLabel"><i class="fas fa-users me-2"></i>Daftar Divisi Tersedia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Divisi</th>
+                <th>Kuota</th>
+                <th>Deskripsi</th>
+              </tr>
+            </thead>
+            <tbody>
+              @forelse($divisis as $divisi)
+                <tr>
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $divisi->nama }}</td>
+                  <td>{{ $divisi->kuota }}</td>
+                  <td>{{ $divisi->deskripsi ?? '-' }}</td>
+                </tr>
+              @empty
+                <tr>
+                  <td colspan="4" class="text-center">Belum ada divisi tersedia.</td>
+                </tr>
+              @endforelse
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

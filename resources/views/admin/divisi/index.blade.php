@@ -24,6 +24,9 @@
             <a href="{{ route('admin.pengaturan.index') }}" class="btn btn-info">
                 <i class="fas fa-cog me-2"></i>Pengaturan Acara
             </a>
+            <a href="{{ route('admin.divisi.peserta') }}" class="btn btn-success">
+                <i class="fas fa-users me-2"></i>Daftar Peserta
+            </a>
             <a href="{{ route('admin.divisi.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Tambah Divisi
             </a>
@@ -65,14 +68,16 @@
                                         <span class="badge bg-primary">{{ $index + 1 }}</span>
                                     </td>
                                     <td>
-                                        <strong>{{ $divisi->nama }}</strong>
+                                        <strong style="color:#111 !important; opacity:1 !important; font-weight:700;">{{ $divisi->nama }}</strong>
                                     </td>
                                     <td>
                                         <span class="badge bg-info">{{ $divisi->kuota }} orang</span>
                                     </td>
                                     <td>
-                                        <i class="fas fa-calendar-alt me-1"></i>
-                                        {{ \Carbon\Carbon::parse($divisi->batas_akhir)->format('d/m/Y H:i') }}
+                                        <span style="color:#111 !important; opacity:1 !important; font-weight:600;">
+                                            <i class="fas fa-calendar-alt me-1"></i>
+                                            {{ \Carbon\Carbon::parse($divisi->batas_akhir)->format('d/m/Y H:i') }}
+                                        </span>
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group">
