@@ -38,6 +38,11 @@ class PendaftaranController extends Controller
         $divisi = Divisi::findOrFail($request->divisi_id);
         $jumlahPendaftar = Pendaftaran::where('divisi_id', $request->divisi_id)->count();
         
+        // Cek batas akhir pendaftaran divisi
+        if (now()->gt($divisi->batas_akhir)) {
+            return back()->withErrors(['divisi_id' => 'Pendaftaran untuk divisi ini sudah ditutup (batas akhir telah lewat).']);
+        }
+
         if ($jumlahPendaftar >= $divisi->kuota) {
             return back()->withErrors(['divisi_id' => 'Kuota divisi ini sudah penuh.']);
         }

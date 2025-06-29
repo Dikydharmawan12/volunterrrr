@@ -1,164 +1,205 @@
-# Pendaftaran Volunter Pengajian Akbar Poliwangi 2025
+# 🎯 Sistem Pendaftaran Divisi - Laravel
 
-Sistem pendaftaran volunter yang modern dan responsif untuk acara Pengajian Akbar yang akan diselenggarakan di Politeknik Negeri Banyuwangi dengan verifikasi admin sederhana.
+Aplikasi web untuk mengelola pendaftaran divisi dengan fitur admin dan user interface yang responsif.
 
-## ✨ Fitur
+## 🚀 Quick Start dengan Docker
 
-- **🎨 Desain Modern**: Interface yang indah dan responsif dengan gradient background
-- **📱 Responsif**: Optimal di desktop, tablet, dan mobile
-- **🏠 Halaman Utama**: Hero section dengan informasi acara dan navigasi
-- **📝 Pendaftaran**: Form pendaftaran yang user-friendly dengan validasi
-- **⚙️ Admin Panel**: Kelola divisi (tambah, edit, hapus) dengan verifikasi password
-- **🔐 Verifikasi Admin**: Sistem verifikasi sederhana dengan password
-- **📊 Dashboard**: Statistik divisi dan volunter
-- **📅 Pengaturan Acara**: Admin dapat mengatur tanggal, waktu, lokasi, dan status pendaftaran
-- **🚫 Kontrol Pendaftaran**: Admin dapat membuka/menutup pendaftaran
+### Prerequisites
+- Docker
+- Docker Compose
 
-## 🎯 Struktur URL
+### 1. Clone Repository
+```bash
+git clone <repository-url>
+cd pendaftaran-divisi
+```
 
-### Halaman User
-- `/` - Beranda dengan hero section
-- `/pendaftaran` - Form pendaftaran volunter
+### 2. Development Environment
+```bash
+# Build dan jalankan aplikasi
+docker-compose up --build
 
-### Halaman Admin
-- `/admin/verify` - Halaman verifikasi admin
-- `/admin/divisi` - Daftar divisi (setelah verifikasi)
-- `/admin/divisi/create` - Tambah divisi baru
-- `/admin/divisi/{id}/edit` - Edit divisi
-- `/admin/pengaturan` - Pengaturan acara (tanggal, waktu, lokasi, dll)
+# Akses aplikasi di http://localhost:8000
+```
 
-## 🚀 Instalasi
+### 3. Production Environment
+```bash
+# Jalankan script deployment
+chmod +x deploy.sh
+./deploy.sh
 
-1. Clone repository ini
-2. Install dependencies:
-   ```bash
-   composer install
-   ```
+# Atau manual
+docker-compose -f docker-compose.prod.yml up --build -d
+```
 
-3. Copy file `.env.example` ke `.env` dan sesuaikan konfigurasi database
+## 🌐 Free Hosting Options
 
-4. Generate app key:
-   ```bash
-   php artisan key:generate
-   ```
+### 1. Railway.app (Recommended)
+```bash
+# Install Railway CLI
+npm install -g @railway/cli
 
-5. Jalankan migrasi:
-   ```bash
-   php artisan migrate
-   ```
+# Deploy
+chmod +x deploy-railway.sh
+./deploy-railway.sh
+```
 
-6. Jalankan seeder untuk data awal:
-   ```bash
-   php artisan db:seed --class=PengaturanAcaraSeeder
-   ```
+### 2. Render.com
+1. Connect repository ke Render
+2. Pilih "Docker" sebagai environment
+3. Render akan otomatis mendeteksi `render.yaml`
 
-7. Jalankan server development:
-   ```bash
-   php artisan serve
-   ```
+### 3. Fly.io
+```bash
+# Install Fly CLI
+curl -L https://fly.io/install.sh | sh
 
-## 📖 Penggunaan
+# Deploy
+chmod +x deploy-fly.sh
+./deploy-fly.sh
+```
 
-### Untuk Volunter (Mahasiswa)
-1. Buka halaman utama `/`
-2. Lihat informasi acara yang ditampilkan
-3. Klik "Daftar Sekarang" atau akses `/pendaftaran`
-4. Isi form pendaftaran dengan data lengkap
-5. Pilih divisi yang tersedia
-6. Submit pendaftaran
+### 4. Heroku
+```bash
+# Install Heroku CLI
+# Deploy dengan Docker
+heroku container:push web
+heroku container:release web
+```
 
-### Untuk Admin
-1. Buka halaman utama `/`
-2. Klik "Admin Panel" atau akses `/admin/verify`
-3. Masukkan password admin: `adminukmimam2025`
-4. Setelah verifikasi berhasil, akan diarahkan ke halaman kelola divisi
-5. **Kelola Divisi**: Tambah, edit, hapus divisi volunter
-6. **Pengaturan Acara**: Atur tanggal, waktu, lokasi, dan status pendaftaran
-7. Klik "Logout" di navbar untuk keluar dari mode admin
+## 📁 Project Structure
 
-## 🔒 Keamanan
+```
+pendaftaran-divisi/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── AdminDivisiController.php
+│   │   ├── AdminPengaturanController.php
+│   │   ├── PendaftaranController.php
+│   │   └── WelcomeController.php
+│   ├── Models/
+│   │   ├── Divisi.php
+│   │   ├── Pendaftaran.php
+│   │   └── PengaturanAcara.php
+│   └── Middleware/
+│       └── AdminVerified.php
+├── resources/views/
+│   ├── admin/
+│   │   ├── divisi/
+│   │   └── pengaturan/
+│   ├── pendaftaran/
+│   └── layouts/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── docker/
+│   ├── nginx.conf
+│   └── supervisord.conf
+├── Dockerfile
+├── docker-compose.yml
+├── docker-compose.prod.yml
+└── README-DOCKER.md
+```
 
-- **Password Admin**: `adminukmimam2025` (dapat diubah di file `routes/web.php`)
-- **Session**: Verifikasi admin menggunakan session Laravel
-- **Middleware**: Semua route admin dilindungi dengan middleware `AdminVerified`
+## 🛠️ Features
 
-## 🎨 Desain & UI/UX
+- **Admin Panel**: Kelola divisi dan pengaturan acara
+- **Pendaftaran**: Form pendaftaran yang user-friendly
+- **Verification**: Sistem verifikasi admin
+- **Responsive Design**: Menggunakan Tailwind CSS
+- **Database**: SQLite untuk kemudahan deployment
 
-- **Color Scheme**: Gradient biru-ungu yang modern
-- **Typography**: Font Segoe UI yang mudah dibaca
-- **Icons**: Font Awesome untuk ikon yang konsisten
-- **Cards**: Glassmorphism effect dengan backdrop blur
-- **Buttons**: Gradient buttons dengan hover effects
-- **Responsive**: Mobile-first approach dengan Bootstrap 5
+## 🔧 Configuration
 
-## 📊 Database
+### Environment Variables
+```env
+APP_ENV=production
+APP_DEBUG=false
+DB_CONNECTION=sqlite
+DB_DATABASE=/var/www/html/database/database.sqlite
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_CONNECTION=sync
+```
 
-### Tabel Divisi
-- `id` - Primary key
-- `nama` - Nama divisi volunter
-- `kuota` - Jumlah kuota maksimal
-- `batas_akhir` - Batas waktu pendaftaran
-- `created_at`, `updated_at` - Timestamp
+### Database
+Aplikasi menggunakan SQLite secara default untuk kemudahan deployment. Database akan dibuat otomatis saat pertama kali menjalankan aplikasi.
 
-### Tabel Pendaftaran
-- `id` - Primary key
-- `nama` - Nama lengkap volunter
-- `nim` - Nomor Induk Mahasiswa
-- `prodi` - Program Studi
-- `no_hp` - Nomor HP
-- `divisi_id` - Foreign key ke tabel divisi
-- `created_at`, `updated_at` - Timestamp
+## 📊 Commands
 
-### Tabel Pengaturan Acara
-- `id` - Primary key
-- `nama_acara` - Nama acara
-- `deskripsi` - Deskripsi acara
-- `tanggal_acara` - Tanggal acara
-- `waktu_acara` - Waktu acara
-- `lokasi` - Lokasi acara
-- `target_volunter` - Target jumlah volunter
-- `status_pendaftaran` - Status buka/tutup pendaftaran
-- `created_at`, `updated_at` - Timestamp
+### Docker Commands
+```bash
+# Start development
+docker-compose up
 
-## 🛠️ Teknologi
+# Start production
+docker-compose -f docker-compose.prod.yml up -d
 
-- **Backend**: Laravel 11
-- **Frontend**: Bootstrap 5, Font Awesome
-- **Database**: MySQL/SQLite
-- **Styling**: Custom CSS dengan CSS Variables
-- **Responsive**: Mobile-first design
+# View logs
+docker-compose logs -f
 
-## 📱 Responsivitas
+# Stop application
+docker-compose down
 
-- **Desktop**: Layout optimal dengan sidebar dan cards
-- **Tablet**: Grid layout yang menyesuaikan
-- **Mobile**: Single column layout dengan touch-friendly buttons
+# Access container
+docker-compose exec app bash
+```
 
-## 🎯 Fitur Admin
+### Artisan Commands
+```bash
+# Run migrations
+docker-compose exec app php artisan migrate
 
-### Pengaturan Acara
-- **Nama Acara**: Ubah judul acara
-- **Deskripsi**: Edit deskripsi acara
-- **Tanggal & Waktu**: Atur tanggal dan waktu acara
-- **Lokasi**: Ubah lokasi acara
-- **Target Volunter**: Set target jumlah volunter
-- **Status Pendaftaran**: Buka/tutup pendaftaran
+# Seed database
+docker-compose exec app php artisan db:seed
 
-### Manajemen Divisi
-- **Tambah Divisi**: Buat divisi baru
-- **Edit Divisi**: Ubah informasi divisi
-- **Hapus Divisi**: Hapus divisi yang tidak diperlukan
-- **Kuota**: Atur kuota per divisi
-- **Batas Waktu**: Set batas pendaftaran per divisi
+# Clear cache
+docker-compose exec app php artisan cache:clear
+```
 
-## 🎯 Catatan
+## 🚨 Troubleshooting
 
-- Sistem menggunakan verifikasi password sederhana
-- Admin panel dapat diakses setelah verifikasi berhasil
-- Session admin akan bertahan sampai logout atau browser ditutup
-- Validasi dilakukan di sisi server untuk mencegah pendaftaran ganda
-- Kuota divisi diperiksa secara otomatis
-- Desain modern dengan glassmorphism effect
-- Fully responsive untuk semua device
-- Admin dapat mengontrol status pendaftaran secara real-time
-- Informasi acara ditampilkan secara dinamis dari database
+### Port Already in Use
+```bash
+# Ubah port di docker-compose.prod.yml
+ports:
+  - "8080:80"  # Ganti 80 dengan port yang tersedia
+```
+
+### Permission Issues
+```bash
+# Fix storage permissions
+docker-compose exec app chown -R www-data:www-data /var/www/html/storage
+docker-compose exec app chmod -R 755 /var/www/html/storage
+```
+
+### Database Issues
+```bash
+# Reset database
+docker-compose exec app php artisan migrate:fresh --seed
+```
+
+## 📈 Performance
+
+Aplikasi sudah dioptimasi untuk production dengan:
+- Config caching
+- Route caching
+- View caching
+- Static file caching di Nginx
+- Optimized Composer autoloader
+
+## 🤝 Contributing
+
+1. Fork repository
+2. Create feature branch
+3. Commit changes
+4. Push to branch
+5. Create Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🆘 Support
+
+Untuk bantuan lebih lanjut, silakan buat issue di repository ini.

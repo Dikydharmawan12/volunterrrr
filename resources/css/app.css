@@ -1,11 +1,84 @@
 @import 'tailwindcss';
-
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
-
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+
+/* Teks pada header dan isi tabel */
+
+.table th,
+.table td {
+    color: #1e293b !important;
+    /* biru tua, kontras di biru muda */
+}
+
+
+/* Teks pesan kosong */
+
+.table td.text-center,
+.table td[colspan],
+.table tbody tr td[colspan] {
+    color: #1e293b !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+}
+
+
+/* Header tabel: biru muda, teks hitam */
+
+.table th {
+    background: #e0f2fe !important;
+    /* biru pastel muda */
+    color: #111 !important;
+    /* hitam */
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #38bdf8 !important;
+    /* biru terang */
+}
+
+
+/* Baris tabel: putih dan biru sangat muda */
+
+.table tbody tr:nth-child(odd) {
+    background: #fff !important;
+}
+
+.table tbody tr:nth-child(even) {
+    background: #f1f5f9 !important;
+    /* biru sangat muda */
+}
+
+
+/* Border tabel: biru terang */
+
+.table,
+.table th,
+.table td {
+    border-color: #38bdf8 !important;
+}
+
+
+/* Teks isi tabel dan pesan kosong: hitam */
+
+.table td,
+.table td.text-center,
+.table td[colspan],
+.table tbody tr td[colspan] {
+    color: #111 !important;
+    font-weight: 500;
+    opacity: 1 !important;
+}
+
+
+/* Hover efek baris */
+
+.table tbody tr:hover {
+    background: #bae6fd !important;
+    /* biru muda saat hover */
+    transition: background 0.2s;
 }

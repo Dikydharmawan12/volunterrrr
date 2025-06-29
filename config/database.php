@@ -31,6 +31,24 @@ return [
 
     'connections' => [
 
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', 27017),
+            'database' => env('DB_DATABASE', 'volunter_db'),
+            'username' => env('DB_USERNAME', ''),
+            'password' => env('DB_PASSWORD', ''),
+            'options' => [
+                'database' => 'admin' // sets the authentication database required by mongo 3
+            ]
+        ],
+
+        'mongodb_atlas' => [
+            'driver' => 'mongodb',
+            'dsn' => env('MONGODB_ATLAS_URI', ''),
+            'database' => env('DB_DATABASE', 'volunter_db'),
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),

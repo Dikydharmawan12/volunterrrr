@@ -50,11 +50,21 @@
             @endif
 
             <!-- Registration Status Alert -->
+            @php
+                use Illuminate\Support\Carbon;
+                $pendaftaranTutupSemua = $divisis->count() > 0 && $divisis->every(function($divisi) { return now()->gt($divisi->batas_akhir); });
+            @endphp
             @if($pengaturan && !$pengaturan->status_pendaftaran)
                 <div class="alert alert-warning text-center">
                     <i class="fas fa-exclamation-triangle me-2" style="font-size: 2rem;"></i>
                     <h5 class="mt-2">Pendaftaran Sedang Ditutup</h5>
                     <p class="mb-0">Pendaftaran volunter sedang ditutup sementara. Silakan cek kembali nanti.</p>
+                </div>
+            @elseif($pendaftaranTutupSemua)
+                <div class="alert alert-danger text-center">
+                    <i class="fas fa-lock me-2" style="font-size: 2rem;"></i>
+                    <h5 class="mt-2">Pendaftaran Sudah Ditutup</h5>
+                    <p class="mb-0">Semua divisi telah melewati batas akhir pendaftaran.</p>
                 </div>
             @else
                 <!-- Button Lihat Divisi -->
