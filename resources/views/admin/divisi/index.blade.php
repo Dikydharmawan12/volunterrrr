@@ -30,6 +30,12 @@
             <a href="{{ route('admin.divisi.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Tambah Divisi
             </a>
+            <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin keluar?')">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </button>
+            </form>
         </div>
     </div>
 

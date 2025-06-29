@@ -15,6 +15,21 @@
         </p>
     </div>
 
+    <!-- Navigation and Logout -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="{{ route('admin.divisi.index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Kembali ke Divisi
+            </a>
+        </div>
+        <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin keluar?')">
+                <i class="fas fa-sign-out-alt me-2"></i>Logout
+            </button>
+        </form>
+    </div>
+
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card">

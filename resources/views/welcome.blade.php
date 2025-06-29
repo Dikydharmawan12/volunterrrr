@@ -15,11 +15,6 @@
                 <p class="lead mb-4">
                     {{ $pengaturan->deskripsi ?? 'Bergabunglah sebagai volunter dalam acara pengajian akbar yang akan diselenggarakan di Politeknik Negeri Banyuwangi. Mari kita bersama-sama menyukseskan acara ini!' }}
                 </p>
-                <div class="d-flex justify-content-center gap-3 flex-wrap">
-                    <a href="/pendaftaran" class="btn btn-light btn-lg px-4">
-                        <i class="fas fa-user-plus me-2"></i>Daftar Sekarang
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -41,8 +36,8 @@
                                 Daftar sebagai volunter untuk membantu menyukseskan acara pengajian akbar. 
                                 Pilih divisi yang sesuai dengan kemampuan dan minat Anda.
                             </p>
-                            <a href="/pendaftaran" class="btn btn-primary">
-                                <i class="fas fa-arrow-right me-2"></i>Mulai Daftar
+                            <a href="/pendaftaran" class="btn btn-primary btn-lg px-4">
+                                <i class="fas fa-user-plus me-2"></i>Daftar Sekarang
                             </a>
                         </div>
                     </div>

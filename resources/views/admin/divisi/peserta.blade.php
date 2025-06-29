@@ -8,9 +8,17 @@
         <div class="col-lg-10">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="mb-0"><i class="fas fa-users me-2"></i>Daftar Peserta Volunter</h2>
-                <a href="{{ route('admin.divisi.exportPeserta') }}" class="btn btn-success">
-                    <i class="fas fa-file-excel me-1"></i> Export Excel
-                </a>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('admin.divisi.exportPeserta') }}" class="btn btn-success">
+                        <i class="fas fa-file-excel me-1"></i> Export Excel
+                    </a>
+                    <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin keluar?')">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </button>
+                    </form>
+                </div>
             </div>
             <div class="card">
                 <div class="card-body p-0">
