@@ -54,6 +54,12 @@ RUN if [ ! -f .env ]; then cp .env.example .env; fi
 # Generate application key
 RUN php artisan key:generate --force
 
+# Pastikan folder dan file database ada
+RUN mkdir -p /workspace/database && touch /workspace/database/database.sqlite
+
+# Set environment variable untuk path database
+ENV DB_DATABASE=/workspace/database/database.sqlite
+
 # Run migrations
 RUN php artisan migrate --force
 
