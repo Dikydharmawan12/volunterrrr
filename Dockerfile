@@ -17,7 +17,11 @@ RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
     sqlite3 \
-    && docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip
+    libsqlite3-dev \
+    pkg-config \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip \
+    && docker-php-ext-configure pdo_sqlite \
+    && docker-php-ext-install pdo_sqlite
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
