@@ -27,6 +27,9 @@ COPY . /var/www/html
 # Copy existing application directory permissions
 COPY --chown=www-data:www-data . /var/www/html
 
+# Copy health check file
+COPY health-check.php /var/www/html/health-check.php
+
 # Install PHP dependencies
 RUN composer install --optimize-autoloader --no-dev
 
