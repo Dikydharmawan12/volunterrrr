@@ -51,4 +51,10 @@
         </div>
     </div>
 </div>
+<!-- Tambahkan tombol kembali di bawah halaman -->
+<div class="text-center mt-4">
+    <a href="/admin/divisi" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Kembali ke Dashboard
+    </a>
+</div>
 @endsection 

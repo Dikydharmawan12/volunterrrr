@@ -19,9 +19,6 @@
                     <a href="/pendaftaran" class="btn btn-light btn-lg px-4">
                         <i class="fas fa-user-plus me-2"></i>Daftar Sekarang
                     </a>
-                    <a href="/admin/verify" class="btn btn-outline-light btn-lg px-4">
-                        <i class="fas fa-cog me-2"></i>Admin Panel
-                    </a>
                 </div>
             </div>
         </div>
@@ -132,6 +129,12 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Tambahkan tombol kembali di bawah info section -->
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Kembali ke Beranda
+        </a>
     </div>
 </div>
 @endsection 

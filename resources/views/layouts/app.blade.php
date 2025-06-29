@@ -278,17 +278,17 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm py-3">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="fas fa-mosque me-2"></i>
-                Volunter Pengajian Akbar
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+                <i class="fas fa-mosque"></i>
+                <span>Volunter Pengajian Akbar</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-auto gap-2">
                     <li class="nav-item">
                         <a class="nav-link" href="/">
                             <i class="fas fa-home me-1"></i>Beranda
@@ -301,16 +301,24 @@
                     </li>
                 </ul>
                 @if(session('admin_verified'))
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                        </li>
-                        <li class="nav-item">
-                            <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-logout btn-sm">
-                                    <i class="fas fa-sign-out-alt me-1"></i>Logout
-                                </button>
-                            </form>
+                    <ul class="navbar-nav ms-auto align-items-center gap-2">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width:32px;height:32px;">
+                                    <i class="fas fa-user-shield text-success"></i>
+                                </span>
+                                <span>Admin</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                                <li>
+                                    <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 @endif

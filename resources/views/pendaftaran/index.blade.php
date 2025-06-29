@@ -313,4 +313,10 @@
     </div>
   </div>
 </div>
+<!-- Tambahkan tombol kembali di bawah halaman -->
+<div class="text-center mt-4">
+    <a href="/" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Kembali ke Beranda
+    </a>
+</div>
 @endsection
