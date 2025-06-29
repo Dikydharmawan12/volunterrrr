@@ -69,8 +69,8 @@ RUN php artisan migrate --force
 # Create health check file
 COPY health-check.php /var/www/html/health-check.php
 
-# Expose port 80
-EXPOSE 80
+# Expose port 8080
+EXPOSE 8080
 
 # Start supervisor
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
