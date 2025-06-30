@@ -16,12 +16,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     nginx \
     supervisor \
-    sqlite3 \
-    libsqlite3-dev \
-    pkg-config \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip \
-    && docker-php-ext-configure pdo_sqlite \
-    && docker-php-ext-install pdo_sqlite
+    default-mysql-client \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -65,8 +61,12 @@ RUN echo 'APP_NAME="Pendaftaran Divisi"' > .env && \
     echo 'LOG_CHANNEL=stack' >> .env && \
     echo 'LOG_DEPRECATIONS_CHANNEL=null' >> .env && \
     echo 'LOG_LEVEL=debug' >> .env && \
-    echo 'DB_CONNECTION=sqlite' >> .env && \
-    echo 'DB_DATABASE=/var/www/html/database/database.sqlite' >> .env && \
+    echo 'DB_CONNECTION=mysql' >> .env && \
+    echo 'DB_HOST=127.0.0.1' >> .env && \
+    echo 'DB_PORT=3306' >> .env && \
+    echo 'DB_DATABASE=volunter' >> .env && \
+    echo 'DB_USERNAME=root' >> .env && \
+    echo 'DB_PASSWORD=' >> .env && \
     echo 'BROADCAST_DRIVER=log' >> .env && \
     echo 'CACHE_DRIVER=file' >> .env && \
     echo 'FILESYSTEM_DISK=local' >> .env && \
@@ -77,21 +77,8 @@ RUN echo 'APP_NAME="Pendaftaran Divisi"' > .env && \
 # Generate application key
 RUN php artisan key:generate --force
 
-# Create database directory and file
-RUN mkdir -p /var/www/html/database \
-    && touch /var/www/html/database/database.sqlite \
-    && chown -R www-data:www-data /var/www/html/database \
-    && chmod 664 /var/www/html/database/database.sqlite
-
-# Set environment variable untuk path database
-ENV DB_CONNECTION=sqlite
-ENV DB_DATABASE=/var/www/html/database/database.sqlite
-ENV APP_ENV=production
-ENV APP_DEBUG=false
-ENV APP_URL=https://volunterrr-production.up.railway.app
-
 # Run migrations
-RUN php artisan migrate --force
+RUN php artisan migrate --force || true
 
 # Clear and cache config
 RUN php artisan config:clear \

@@ -50,3 +50,15 @@ Route::post('/admin/logout', function () {
     return redirect('/');
 })->name('admin.logout');
 
+Route::get('/logs', function() {
+    return response()->file(storage_path('logs/laravel.log'));
+});
+
+Route::get('/db-check', function() {
+    try {
+        \Illuminate\Support\Facades\DB::connection()->getPdo();
+        return "DB Connected to: ".\Illuminate\Support\Facades\DB::connection()->getDatabaseName();
+    } catch (\Exception $e) {
+        return "DB Error: ".$e->getMessage();
+    }
+});
